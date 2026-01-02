@@ -51,7 +51,7 @@
 5. Sélectionnez la branche main et enregistrez.
 6. L'application sera accessible publiquement via l'URL fournie par GitHub.
 
-## Badges des technologies
+## Technologies et langages
 
 <div align="center">
 
