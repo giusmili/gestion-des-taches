@@ -30,7 +30,7 @@ function setupForm() {
                 id: Date.now(),
                 title: input.value.trim(),
                 category: category,
-                categoryLabel: category === 'priority' ? 'Priorite Absolue' : 'Projet A',
+                categoryLabel: category === 'priority' ? 'Priorité Absolue' : 'Projet A',
                 status: 'todo'
             };
             tasksData.unshift(newTask);
