@@ -51,18 +51,6 @@
 5. Sélectionnez la branche main et enregistrez.
 6. L'application sera accessible publiquement via l'URL fournie par GitHub.
 
-## 📝 Personnalisation
+## Badges des technologies
 
->Pour mettre à jour les tâches, il suffit de modifier la constante __tasksData__ dans la balise : 
-
- ```js
- <script> 
-    /* du fichier index.html. 
-    L'interface et les graphiques 
-    s'adapteront automatiquement aux 
-    nouvelles données lors du prochain chargement. 
-    */
-</script>
- ```
-
->Projet généré et optimisé pour une productivité maximale.
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwindcss&logoColor=white) ![Chart.js](https://img.shields.io/badge/Chart.js-FF6384?style=for-the-badge&logo=chartdotjs&logoColor=white) ![IndexedDB](https://img.shields.io/badge/IndexedDB-0A66C2?style=for-the-badge&logo=icloud&logoColor=white) ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
