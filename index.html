@@ -97,6 +97,27 @@
                 </div>
             </div>
         </main>
+        
+        <!-- FOOTER -->
+        <footer class="bg-white p-6 rounded-2xl shadow-sm border border-stone-200 space-y-2 text-center">
+            <p class="text-sm text-stone-700" id="footer-copy">&copy; Militello Giuseppe - <span id="footer-date"></span></p>
+            <p class="text-xs text-stone-500">Mentions legales : projet personnel, aucune donnee collectée par ce tableau de bord.</p>
+        </footer>
+    </div>
+
+    <!-- COOKIE BANNER -->
+    <div id="cookie-banner" class="fixed inset-x-0 bottom-4 px-4 flex justify-center z-50 hidden">
+        <div class="bg-white border border-stone-200 shadow-lg rounded-xl p-4 md:p-5 flex flex-col md:flex-row items-center gap-3 max-w-4xl w-full md:w-auto transform transition-all duration-300 opacity-0 translate-y-4">
+            <div class="text-center md:text-left">
+                <p class="text-sm font-semibold text-stone-800">Cookies pour vos choix</p>
+                <p class="text-xs text-stone-500">Nous utilisons un cookie local pour garder vos tƒches et preferences. Vous pouvez refuser ou personnaliser.</p>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-2 w-full md:w-auto">
+                <button type="button" aria-label="accépter les cookies" id="cookie-accept" class="bg-green-600 hover:bg-green-700 text-white text-sm font-semibold px-4 py-2 rounded-lg transition-colors">Accepter les cookies</button>
+                <button type="button" aria-label="personnaliser les cookies" id="cookie-customize" class="bg-stone-100 hover:bg-stone-200 text-stone-800 text-sm font-semibold px-4 py-2 rounded-lg transition-colors">Personnaliser</button>
+                <button type="button" aria-label="réfuser les cookies" id="cookie-refuse" class="bg-red-50 hover:bg-red-100 text-red-600 text-sm font-semibold px-4 py-2 rounded-lg transition-colors">Refuser</button>
+            </div>
+        </div>
     </div>
 
         <script src="js/app.js"></script>
