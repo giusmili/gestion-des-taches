@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau de Bord : Organisation & Productivité</title>
+
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="p-4 md:p-8">
+
+    <div class="max-w-7xl mx-auto space-y-8">
+
+        <!-- HEADER SECTION -->
+        <header class="bg-white p-6 rounded-2xl shadow-sm border border-stone-200">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                <div>
+                    <h1 class="text-3xl font-bold text-stone-800 tracking-tight">Gestion des tâches</h1>
+                    <p class="text-stone-500 mt-2 text-sm md:text-base">Gérez l'avancement de vos objectifs en temps réel.</p>
+                </div>
+                <div class="flex gap-3 flex-wrap">
+                    <div class="text-center px-4 py-2 bg-stone-50 rounded-lg border border-stone-100">
+                        <span class="block text-[10px] text-stone-400 uppercase font-bold">À faire</span>
+                        <span id="todo-count" class="text-xl font-bold text-stone-600">0</span>
+                    </div>
+                    <div class="text-center px-4 py-2 bg-blue-50 rounded-lg border border-blue-100">
+                        <span class="block text-[10px] text-blue-400 uppercase font-bold">En cours</span>
+                        <span id="progress-count" class="text-xl font-bold text-blue-600">0</span>
+                    </div>
+                    <div class="text-center px-4 py-2 bg-green-50 rounded-lg border border-green-100">
+                        <span class="block text-[10px] text-green-400 uppercase font-bold">Terminé</span>
+                        <span id="done-count" class="text-xl font-bold text-green-600">0</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- MAIN CONTENT -->
+        <main class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            
+            <!-- LEFT: INPUT & LIST -->
+            <div class="space-y-6">
+                <!-- NEW TASK INPUT -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-stone-200">
+                    <h3 class="text-lg font-bold text-stone-800 mb-4">Nouvelle Tâche</h3>
+                    <form id="task-form" class="space-y-4">
+                        <div class="flex flex-col sm:flex-row gap-3">
+                            <input type="text" id="task-input" placeholder="Nouvelle action..." 
+                                   class="flex-1 bg-stone-50 border border-stone-200 rounded-xl px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-500 transition-all" required>
+                            <select id="category-input" class="bg-stone-50 border border-stone-200 rounded-xl px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-green-500 transition-all">
+                                <option value="priority">🔥 Priorité</option>
+                                <option value="work">📅 Projet</option>
+                            </select>
+                        </div>
+                        <div class="flex justify-end">
+                            <button type="submit" class="bg-green-600 text-white font-semibold py-2 px-6 rounded-lg hover:bg-green-700 transition-colors shadow-sm text-sm">
+                                Ajouter à la liste
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- FILTERS -->
+                <div class="flex flex-wrap gap-2">
+                    <button onclick="filterTasks('all')" class="filter-btn active px-4 py-2 rounded-full text-sm font-medium transition-colors bg-stone-800 text-white shadow-md" data-filter="all">Toutes</button>
+                    <button onclick="filterTasks('priority')" class="filter-btn px-4 py-2 rounded-full text-sm font-medium transition-colors bg-white text-stone-600 border border-stone-200 hover:bg-stone-50" data-filter="priority">🔥 Priorités</button>
+                    <button onclick="filterTasks('work')" class="filter-btn px-4 py-2 rounded-full text-sm font-medium transition-colors bg-white text-stone-600 border border-stone-200 hover:bg-stone-50" data-filter="work">📅 Projets</button>
+                </div>
+
+                <!-- LIST -->
+                <div id="task-list" class="space-y-4 task-scroll max-h-[600px] overflow-y-auto pr-2">
+                    <!-- Injecté par JS -->
+                </div>
+            </div>
+
+            <!-- RIGHT: ANALYTICS -->
+            <div class="space-y-8">
+                <!-- PROGRESS CHART (3 ETATS) -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-stone-200">
+                    <div class="mb-6">
+                        <h3 class="text-lg font-bold text-stone-800">Progression des tâches</h3>
+                        <p class="text-xs text-stone-500 italic">Visualisation du flux de travail (À faire, En cours, Terminé).</p>
+                    </div>
+                    <div class="chart-container" style="height: 250px;">
+                        <canvas id="progressChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- DISTRIBUTION CHART -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-stone-200">
+                    <h3 class="text-lg font-bold text-stone-800 mb-4 text-center">Répartition par Type</h3>
+                    <div class="chart-container" style="height: 200px;">
+                        <canvas id="distributionChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="js/app.js"></script>
+</body>
+</html>
