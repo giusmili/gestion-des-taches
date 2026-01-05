@@ -15,7 +15,7 @@ const dbPromise = initDB();
 const CONSENT_KEY = 'cookieConsent';
 const FILTER_COOKIE = 'todoFilter';
 
-document.addEventListener('DOMContentLoaded', async () => {
+export async function initApp() {
     consentStatus = getCookieConsent();
     if (consentStatus === 'refused') {
         await clearTasksDB();
@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     setFooterDate();
     initCookieBanner();
     registerServiceWorker();
-});
+}
 
 function setupForm() {
     const form = document.getElementById('task-form');
@@ -139,22 +139,22 @@ function updateFilterButtonState(filter) {
     });
 }
 
-window.updateTaskStatus = function(id, newStatus) {
+export function updateTaskStatus(id, newStatus) {
     const task = tasksData.find(t => t.id === id);
     if (task) {
         task.status = newStatus;
         saveTaskToDB(task);
         renderApp();
     }
-};
+}
 
-window.deleteTask = function(id) {
+export function deleteTask(id) {
     tasksData = tasksData.filter(t => t.id !== id);
     deleteTaskFromDB(id);
     renderApp();
-};
+}
 
-window.filterTasks = function(filter) {
+export function filterTasks(filter) {
     const targetFilter = ['all', 'priority', 'work'].includes(filter) ? filter : 'all';
     currentFilter = targetFilter;
     updateFilterButtonState(targetFilter);
@@ -162,7 +162,7 @@ window.filterTasks = function(filter) {
         setCookie(FILTER_COOKIE, targetFilter, 180);
     }
     renderTaskList();
-};
+}
 
 function updateCharts() {
     const ctxProg = document.getElementById('progressChart').getContext('2d');
