@@ -28,6 +28,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     setupForm();
     setFooterDate();
     initCookieBanner();
+    registerServiceWorker();
 });
 
 function setupForm() {
@@ -432,4 +433,13 @@ function setFooterDate() {
     if (!target) return;
     const today = new Date();
     target.textContent = today.toLocaleDateString('fr-FR');
+}
+
+// --- SERVICE WORKER ---
+function registerServiceWorker() {
+    if (!('serviceWorker' in navigator)) return;
+    if (!window.location.protocol.startsWith('http')) return; // Service worker not available for file://
+    navigator.serviceWorker
+        .register('/service-worker.js')
+        .catch((err) => console.error('Service worker registration failed', err));
 }
