@@ -24,6 +24,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         await loadTasksFromDB();
     }
     applySavedFilter();
+    setupFilters();
     renderApp();
     setupForm();
     setFooterDate();
@@ -119,6 +120,25 @@ function renderTaskList() {
     });
 }
 
+function setupFilters() {
+    const buttons = document.querySelectorAll('.filter-btn');
+    buttons.forEach((btn) => {
+        btn.addEventListener('click', () => {
+            filterTasks(btn.dataset.filter);
+        });
+    });
+    updateFilterButtonState(currentFilter);
+}
+
+function updateFilterButtonState(filter) {
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        const isActive = btn.dataset.filter === filter;
+        btn.className = isActive
+            ? "filter-btn active px-4 py-2 rounded-full text-sm font-medium transition-colors bg-stone-800 text-white shadow-md"
+            : "filter-btn px-4 py-2 rounded-full text-sm font-medium transition-colors bg-white text-stone-600 border border-stone-200 hover:bg-stone-50";
+    });
+}
+
 window.updateTaskStatus = function(id, newStatus) {
     const task = tasksData.find(t => t.id === id);
     if (task) {
@@ -135,15 +155,11 @@ window.deleteTask = function(id) {
 };
 
 window.filterTasks = function(filter) {
-    currentFilter = filter;
-    document.querySelectorAll('.filter-btn').forEach(btn => {
-        const isActive = btn.dataset.filter === filter;
-        btn.className = isActive 
-            ? "filter-btn active px-4 py-2 rounded-full text-sm font-medium transition-colors bg-stone-800 text-white shadow-md"
-            : "filter-btn px-4 py-2 rounded-full text-sm font-medium transition-colors bg-white text-stone-600 border border-stone-200 hover:bg-stone-50";
-    });
+    const targetFilter = ['all', 'priority', 'work'].includes(filter) ? filter : 'all';
+    currentFilter = targetFilter;
+    updateFilterButtonState(targetFilter);
     if (isConsentGranted()) {
-        setCookie(FILTER_COOKIE, filter, 180);
+        setCookie(FILTER_COOKIE, targetFilter, 180);
     }
     renderTaskList();
 };
