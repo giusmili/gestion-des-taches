@@ -80,8 +80,8 @@ function renderTaskList() {
         const statusLabels = { 'todo': 'A faire', 'in-progress': 'En cours', 'done': 'Termine' };
 
         container.innerHTML += `
-            <div class="bg-white border border-stone-200 p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                <div class="flex flex-col sm:flex-row justify-between items-start gap-3">
+            <article class="bg-white border border-stone-200 p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow" aria-label="Tache ${task.title}">
+                <header class="flex flex-col sm:flex-row justify-between items-start gap-3">
                     <div class="flex-1">
                         <div class="flex items-center gap-2 mb-1">
                             <span class="text-[10px] font-bold px-2 py-0.5 rounded-full border border-${color}-200 bg-${color}-50 text-${color}-700">
@@ -94,15 +94,16 @@ function renderTaskList() {
                         <h4 class="font-bold text-stone-800 ${task.status === 'done' ? 'line-through opacity-50' : ''}">${task.title}</h4>
                     </div>
                     
-                    <div class="flex items-center gap-1 shrink-0">
-                        <select onchange="updateTaskStatus(${task.id}, this.value)" 
+                    <div class="flex items-center gap-1 shrink-0" aria-label="Actions de la tache">
+                        <label class="sr-only" for="status-${task.id}">Statut</label>
+                        <select id="status-${task.id}" onchange="updateTaskStatus(${task.id}, this.value)" 
                                 class="text-xs bg-stone-50 border border-stone-200 rounded-md px-2 py-1 focus:outline-none focus:ring-1 focus:ring-green-500">
                             <option value="todo" ${task.status === 'todo' ? 'selected' : ''}>A faire</option>
                             <option value="in-progress" ${task.status === 'in-progress' ? 'selected' : ''}>En cours</option>
                             <option value="done" ${task.status === 'done' ? 'selected' : ''}>Termine</option>
                         </select>
-                        <button onclick="deleteTask(${task.id})" class="text-stone-400 hover:text-red-500 px-2 transition-colors" aria-label="Supprimer la tache">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <button type="button" onclick="deleteTask(${task.id})" class="text-stone-400 hover:text-red-500 px-2 transition-colors" aria-label="Supprimer la tache">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                                 <path d="M3 6h18"></path>
                                 <path d="M8 6v-2a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
                                 <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"></path>
@@ -111,8 +112,8 @@ function renderTaskList() {
                             </svg>
                         </button>
                     </div>
-                </div>
-            </div>
+                </header>
+            </article>
         `;
     });
 }
