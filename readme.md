@@ -1,6 +1,6 @@
 # 📊 Tableau de Bord de Productivité Interactif
 
->Ce projet est une Single Page Application (SPA) interactive conçue pour transformer une liste de tâches statique (Markdown) en un outil de pilotage dynamique. Il permet de visualiser la répartition de l'effort, de suivre la progression en temps réel et de réduire la fatigue décisionnelle grâce à un mode "Focus".
+>Ce projet est une Single Page Application interactive conçue pour transformer une liste de tâches statique (Markdown) en un outil de pilotage dynamique. Il permet de visualiser la répartition de l'effort, de suivre la progression en temps réel et de réduire la fatigue décisionnelle grâce à un mode "Focus".
 
 ## 🚀 Fonctionnalités Clés
 
