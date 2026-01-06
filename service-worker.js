@@ -1,9 +1,10 @@
-const CACHE_NAME = 'taskboard-cache-v1';
+const CACHE_NAME = 'taskboard-cache-v3';
 const ASSETS = [
     '/',
     '/index.html',
     '/css/style.css',
     '/js/app.js',
+    '/js/main.js',
     'https://cdn.tailwindcss.com',
     'https://cdn.jsdelivr.net/npm/chart.js'
 ];
